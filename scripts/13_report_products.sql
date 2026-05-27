@@ -20,19 +20,9 @@ Highlights:
        - average monthly revenue
 ===============================================================================
 */
--- =============================================================================
--- Create Report: gold.report_products
--- =============================================================================
-IF OBJECT_ID('gold.report_products', 'V') IS NOT NULL
-    DROP VIEW gold.report_products;
-GO
 
-CREATE VIEW gold.report_products AS
+-- Base Query: Retrieves core columns from fact_sales and dim_products
 
-WITH base_query AS (
-/*---------------------------------------------------------------------------
-1) Base Query: Retrieves core columns from fact_sales and dim_products
----------------------------------------------------------------------------*/
     SELECT
 	    f.order_number,
         f.order_date,
@@ -47,13 +37,13 @@ WITH base_query AS (
     FROM gold.fact_sales f
     LEFT JOIN gold.dim_products p
         ON f.product_key = p.product_key
-    WHERE order_date IS NOT NULL  -- only consider valid sales dates
+    WHERE order_date IS NOT NULL  
 ),
 
 product_aggregations AS (
-/*---------------------------------------------------------------------------
-2) Product Aggregations: Summarizes key metrics at the product level
----------------------------------------------------------------------------*/
+
+-- Product Aggregations: Summarizes key metrics at the product level
+
 SELECT
     product_key,
     product_name,
@@ -77,9 +67,8 @@ GROUP BY
     cost
 )
 
-/*---------------------------------------------------------------------------
-  3) Final Query: Combines all product results into one output
----------------------------------------------------------------------------*/
+  -- Final Query: Combines all product results into one output
+
 SELECT 
 	product_key,
 	product_name,
@@ -99,7 +88,7 @@ SELECT
 	total_quantity,
 	total_customers,
 	avg_selling_price,
-	-- Average Order Revenue (AOR)
+	-- Average Order Revenue 
 	CASE 
 		WHEN total_orders = 0 THEN 0
 		ELSE total_sales / total_orders
