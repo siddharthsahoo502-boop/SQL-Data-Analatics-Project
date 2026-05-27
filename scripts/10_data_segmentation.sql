@@ -5,10 +5,6 @@ Data Segmentation Analysis
 Purpose:
     - To group data into meaningful categories for targeted insights.
     - For customer segmentation, product categorization, or regional analysis.
-
-SQL Functions Used:
-    - CASE: Defines custom segmentation logic.
-    - GROUP BY: Groups data into segments.
 ===============================================================================
 */
 
@@ -38,7 +34,7 @@ ORDER BY total_products DESC;
 	- VIP: Customers with at least 12 months of history and spending more than €5,000.
 	- Regular: Customers with at least 12 months of history but spending €5,000 or less.
 	- New: Customers with a lifespan less than 12 months.
-And find the total number of customers by each group
+And the total number of customers by each group
 */
 WITH customer_spending AS (
     SELECT
