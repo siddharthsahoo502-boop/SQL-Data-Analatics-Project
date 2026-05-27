@@ -3,7 +3,7 @@
 Change Over Time Analysis
 ===============================================================================
 Purpose:
-    - To track trends, growth, and changes in key metrics over time.
+    - To track trends, growth over time.
     - For time-series analysis and identifying seasonality.
     - To measure growth or decline over specific periods.
 
@@ -14,7 +14,6 @@ SQL Functions Used:
 */
 
 -- Analyse sales performance over time
--- Quick Date Functions
 SELECT
     YEAR(order_date) AS order_year,
     MONTH(order_date) AS order_month,
