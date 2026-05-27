@@ -21,19 +21,7 @@ Highlights:
 ===============================================================================
 */
 
--- =============================================================================
--- Create Report: gold.report_customers
--- =============================================================================
-IF OBJECT_ID('gold.report_customers', 'V') IS NOT NULL
-    DROP VIEW gold.report_customers;
-GO
 
-CREATE VIEW gold.report_customers AS
-
-WITH base_query AS(
-/*---------------------------------------------------------------------------
-1) Base Query: Retrieves core columns from tables
----------------------------------------------------------------------------*/
 SELECT
 f.order_number,
 f.product_key,
@@ -51,7 +39,7 @@ WHERE order_date IS NOT NULL)
 
 , customer_aggregation AS (
 /*---------------------------------------------------------------------------
-2) Customer Aggregations: Summarizes key metrics at the customer level
+    Customer Aggregations: Summarizes key metrics at the customer level
 ---------------------------------------------------------------------------*/
 SELECT 
 	customer_key,
