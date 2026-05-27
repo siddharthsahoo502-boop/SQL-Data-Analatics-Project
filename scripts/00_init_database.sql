@@ -1,5 +1,5 @@
 
--- Create the 'DataWarehouseAnalytics' database
+-- Create the 'DataAnalytics' database
 CREATE DATABASE Data_Analytics;
 GO
 
